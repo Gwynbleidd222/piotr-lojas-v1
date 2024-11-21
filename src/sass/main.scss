@@ -1,0 +1,637 @@
+@import '../sass/colors';
+@import '../sass/mixins';
+@import '../sass/animation';
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	font-size: 62.5%;
+	scroll-behavior: smooth;
+}
+
+body {
+	font-size: 1.6rem;
+	font-family: 'Montserrat', sans-serif;
+	background-color: $more-black;
+	overflow-x: hidden;
+}
+
+// NAV
+.burger-btn {
+	position: fixed;
+	top: 15px;
+	right: 15px;
+	padding: 1em;
+	background: none;
+	border: 1px solid transparent;
+	cursor: pointer;
+	z-index: 1000;
+	
+	&:focus {
+		outline: none;
+		border: 1px solid rbga(255, 255, 255, 0.5);
+		border-radius: 8px;
+	}
+
+	&:hover {
+		.burger-btn__bars::after,
+		.burger-btn__bars::before {
+			width: 100%;
+		}
+	}
+
+	&__box {
+		position: relative;
+		width: 40px;
+		height: 30px;
+	}
+
+	&__bars,
+	&__bars::after,
+	&__bars::before {
+		@include burgerBtn;
+	}
+
+	&__bars {
+		width: 100%;
+
+		&::after {
+			top: 13px;
+			width: 60%;
+		}
+		&::before {
+			top: 27px;
+			width: 30%;
+			transition-delay: 0.1s;
+		}
+	}
+}
+
+.nav {
+	position: fixed;
+	width: 100%;
+	padding: 1.6em;
+	background-color: $more-black;
+	text-transform: uppercase;
+	font-size: 1.8rem;
+	z-index: 100;
+
+	a {
+		text-decoration: none;
+		color: $white;
+
+		i {
+			color: $red;
+		}
+	}
+
+	ul.active {
+		transform: translate(0);
+	}
+
+	.nav-items {
+		position: absolute;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		width: 70%;
+		height: 100vh;
+		top: 0;
+		right: 0;
+		background-color: $black;
+		list-style: none;
+		transition: transform 0.3s ease-in;
+		transform: translate(100%);
+
+		li {
+			padding: 5rem;
+			font-size: 3rem;
+		}
+
+		li a {
+			transition: color 0.3s;
+		}
+
+		li a:hover {
+			color: $red;
+		}
+	}
+
+	.nav-items-screen {
+		display: none;
+	}
+}
+
+// HEADEAR
+
+header {
+	color: $white;
+
+	h1 {
+		text-transform: uppercase;
+		font-size: 2rem;
+		padding: 1em;
+
+		span {
+			color: $red;
+		}
+	}
+
+	.hero-img {
+		position: relative;
+		height: 100vh;
+		background-image: url('../img/Przysiad-small.jpg');
+		background-position: center;
+		background-size: cover;
+		background-attachment: fixed;
+		z-index: 0;
+	}
+
+	.hero-shadow {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0, 0, 0, 0.8);
+		z-index: -10;
+	}
+
+	.hero-text {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		height: 100%;
+		z-index: 5;
+		padding: 6em;
+		text-align: center;
+	}
+
+	.fas {
+		position: absolute;
+		top: 85%;
+		left: 40%;
+		transform: translate(-50%, -50%);
+		margin: 2rem;
+		color: $white;
+		font-size: 4rem;
+		bottom: 2rem;
+	}
+}
+
+// O mnie
+
+.wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	text-align: center;
+	background-color: $black;
+	color: $white;
+
+	.img-me {
+		margin-top: 3rem;
+		width: 200px;
+		height: 200px;
+		border-radius: 50%;
+		object-fit: cover;
+		object-position: 50% 20%;
+	}
+
+	.heading-tittle {
+		font-size: 4rem;
+		padding: 5rem;
+		letter-spacing: 1px;
+	}
+
+	.me-text {
+		padding: 1rem 3rem;
+		text-align: justify;
+	}
+}
+
+// OFERTA
+
+.offers-section {
+	background-color: $more-black;
+
+	.offers-section-wrap {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		font-size: 2rem;
+		padding: 2rem;
+		margin: 2.5rem;
+
+		.offers {
+			margin: 3rem;
+
+			i {
+				font-size: 5rem;
+				margin: 2.5rem;
+			}
+		}
+
+		.offers:hover {
+			color: $red;
+		}
+	}
+}
+
+.carousel-section {
+	background-color: $black;
+}
+
+.carousel {
+	padding: 1.6rem;
+	width: 100%;
+
+	.vertical {
+		width: 50%;
+		left: 25%;
+	}
+	.carousel-control-next-icon {
+		background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23DA0037'%3e%3cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+		width: 50%;
+		height: 50%;
+	}
+	.carousel-control-prev-icon {
+		background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23DA0037'%3e%3cpath d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/%3e%3c/svg%3e");
+		width: 50%;
+		height: 50%;
+	}
+}
+
+// CENNIK
+
+.price-section {
+	background-color: $more-black;
+}
+
+.accordion {
+	margin: 2rem;
+	padding-bottom: 2rem;
+	color: $white;
+	border-radius: 6px;
+
+	p {
+		margin-bottom: 0.5em;
+	}
+
+	i {
+		margin-right: 2rem;
+		color: $red;
+	}
+
+	.accordion-box {
+		margin: 2rem;
+	}
+
+	.accordion-btn {
+		width: 100%;
+		padding: 1em;
+		font-size: 2rem;
+		text-align: left;
+		background-color: $black;
+		box-shadow: 1px 1px 9px $red;
+		color: $white;
+		transition: background-color 0.3s;
+		border: none;
+		cursor: pointer;
+	}
+
+	.accordion-btn:hover,
+	.accordion-btn:focus {
+		background-color: $grey;
+		outline: none;
+	}
+
+	.accordion-info {
+		display: none;
+		padding: 1em 2em;
+
+		span {
+			font-size: 2rem;
+			font-weight: bold;
+		}
+	}
+
+	.active-accordion {
+		display: block;
+	}
+}
+
+// KONTAKT
+
+.contact-section {
+	height: 100vh;
+	background-color: $black;
+
+}
+
+.hero-img-contact {
+	position: relative;
+	// height: 100vh;
+	background-image: url('../img/k1-small.jpg');
+	background-attachment: fixed;
+	background-position: center;
+	background-size: cover;
+	z-index: 0;
+
+	.msg-status {
+		display: none;
+		justify-content: center;
+		align-items: center;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%);
+		padding: 3rem;
+		width: 70%;
+		text-align: center;
+		box-shadow: 1px 1px 9px $red;
+		font-size: 2.4rem;
+	}
+
+	.success {
+		display: flex;
+		background-color: $black;
+		color: $white;
+	}
+	.error {
+		display: flex;
+		background-color: $red;
+		color: $white;
+	}
+
+	.hero-shadow-contact {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0, 0, 0, 0.9);
+		z-index: -10;
+	}
+
+	.hero-text-contact {
+		top: 0;
+		z-index: 5;
+		padding: 2em 1.3em;
+		text-align: center;
+		color: $white;
+
+		h2 {
+			font-size: 4rem;
+			padding: 0.5em;
+		}
+	}
+
+	.contact-form {
+		padding: 3rem;
+		margin: 0 auto;
+		width: 80%;
+		background-color: $black;
+		box-shadow: 1px 1px 9px $red;
+		color: $white;
+		border-radius: 12px;
+	}
+
+	.contact-box {
+		display: flex;
+		flex-direction: column;
+		text-align: left;
+		margin: 2rem 0;
+	}
+
+	.contact-box .error-text {
+		margin: 0.5rem 0 0 1rem;
+		font-size: 1.4rem;
+		color: $red;
+		visibility: hidden;
+	}
+
+	.contact-box.error-msg .error-text {
+		visibility: visible;
+	}
+
+	.contact-form label {
+		margin-bottom: 1rem;
+		font-size: 1.6rem;
+	}
+
+	.contact-form input,
+	.contact-form textarea,
+	.contact-form button {
+		padding: 1rem;
+		font-family: inherit;
+		border-radius: 12px;
+	}
+
+	.contact-form textarea {
+		min-height: 150px;
+	}
+
+	.contact-form button {
+		padding: 0.8rem;
+		width: 100%;
+		cursor: pointer;
+		background-color: $black;
+		color: $white;
+		box-shadow: 1px 1px 9px $red;
+		border: none;
+		transition: background-color 0.3s;
+	}
+
+	.contact-form button:hover {
+		background-color: $grey;
+	}
+
+	.social-media-boxes {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		margin-top: 4rem;
+		text-align: center;
+		color: $white;
+
+		.social-media-box {
+			padding: 1em;
+		}
+
+		i {
+			font-size: 4rem;
+			color: $white;
+		}
+
+		h4 {
+			font-size: 2.6rem;
+		}
+		
+		.social-media-box:hover {
+			color: $red;
+			i {
+				color: $red;
+			}
+		}
+	}
+
+	
+}
+
+
+
+
+//Footer
+
+.footer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0.5em;
+	background-color: $more-black;
+	color: $white;
+}
+
+// =======================
+// MEDIA
+// =======================
+
+@media (min-width: 576px) {
+	header {
+		.hero-text {
+			h1 {
+				font-size: 2.5rem;
+				padding: 2em 9em;
+			}
+		}
+
+		.fas {
+			top: 90%;
+			left: 45%;
+		}
+	}
+
+	.carousel {
+		margin: 0 auto;
+		width: 70%;
+	}
+}
+
+@media (min-width: 768px) {
+	.carousel {
+		width: 50%;
+	}
+}
+
+@media (min-width: 992px) {
+	.burger-btn {
+		display: none;
+	}
+
+	header {
+		.hero-img {
+			background-image: url(../img/Przysiad-Big.jpg);
+		}
+
+		.hero-text {
+			h1 {
+				font-size: 2.5rem;
+				padding: 2em 11em;
+			}
+		}
+
+		.fas {
+			left: 50%;
+		}
+	}
+
+	.nav {
+		.nav-items-screen {
+			position: absolute;
+			display: flex;
+			align-items: center;
+			justify-content: space-evenly;
+			top: 0;
+			right: 0;
+			list-style: none;
+
+			li {
+				padding: 3rem;
+			}
+
+			li a {
+				transition: color 0.3s;
+			}
+
+			li a:hover {
+				color: $red;
+			}
+		}
+	}
+
+	.offers-section {
+		.offers-section-wrap {
+			flex-direction: row;
+		}
+	}
+
+	.hero-img-contact .social-media-boxes {
+		justify-content: space-around;
+		flex-direction: row;
+	}
+}
+
+@media (min-width: 1100px) {
+	header {
+		.hero-text {
+			h1 {
+				font-size: 4rem;
+				padding: 0.5em 12em;
+			}
+		}
+	}
+
+	.wrapper {
+		.heading-tittle {
+			font-size: 5rem;
+		}
+
+		.price-text {
+			font-size: 2rem;
+		}
+
+		.me-text {
+			width: 700px;
+			font-size: 2rem;
+			padding: 1em 2em;
+			text-align: center;
+		}
+	}
+
+	.accordion {
+		.accordion-box {
+			margin: 2rem auto;
+			width: 900px;
+		}
+	}
+
+	.hero-img-contact {
+
+		.hero-text-contact {
+			p {
+				font-size: 2rem;
+			}
+		}
+		.contact-form {
+			width: 900px;
+		}
+	}
+}
